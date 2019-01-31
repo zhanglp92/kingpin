@@ -1,6 +1,8 @@
 # kingpin
 for Prometheus node_expoter remover kingpin
 
+[中文说明](docs/README.md)
+
 # Use
 
 eg: go mod
