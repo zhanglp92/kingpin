@@ -8,6 +8,11 @@ type Application struct {
 	values     []string
 }
 
+// Action ...
+func (a *Application) Action(action Action) *Application {
+	return a
+}
+
 // Flag ...
 func (a *Application) Flag(name, help string) *Application {
 	return &Application{name: name, help: help}
