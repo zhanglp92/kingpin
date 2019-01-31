@@ -1,17 +1,16 @@
-package clause
+package kingpin
 
 // desc: 封装flag
 
 import (
 	"strconv"
 
-	"github.com/zhanglp92/kingpin/global"
-	"gopkg.in/alecthomas/kingpin.v2"
+	sk "gopkg.in/alecthomas/kingpin.v2"
 )
 
 // Clause ...
 type Clause struct {
-	c *kingpin.FlagClause
+	c *sk.FlagClause
 
 	name, help string
 	values     []string
@@ -21,8 +20,8 @@ type Clause struct {
 func Flag(name, help string) *Clause {
 	c := &Clause{name: name, help: help}
 
-	if global.Kingpin() {
-		c.c = kingpin.Flag(name, help)
+	if Kingpin() {
+		c.c = sk.Flag(name, help)
 	}
 	return c
 }
@@ -31,14 +30,14 @@ func Flag(name, help string) *Clause {
 func (c *Clause) Default(values ...string) *Clause {
 	cc := &Clause{values: values}
 
-	if global.Kingpin() {
+	if Kingpin() {
 		cc.c = c.c.Default(values...)
 	}
 	return cc
 }
 
 func (c *Clause) String() (target *string) {
-	if global.Kingpin() {
+	if Kingpin() {
 		return c.c.String()
 	}
 
@@ -53,7 +52,7 @@ func (c *Clause) String() (target *string) {
 
 // Bool ...
 func (c *Clause) Bool() (target *bool) {
-	if global.Kingpin() {
+	if Kingpin() {
 		return c.c.Bool()
 	}
 

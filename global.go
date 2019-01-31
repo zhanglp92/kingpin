@@ -1,4 +1,4 @@
-package global
+package kingpin
 
 var (
 	// withKingpin 使用原生kingpin.v2
