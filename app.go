@@ -28,6 +28,13 @@ func (a *Application) String() (target *string) {
 	return
 }
 
+// StringVar ...
+func (a *Application) StringVar(target *string) {
+	if len(a.values) > 0 {
+		*target = a.values[0]
+	}
+}
+
 // Bool ...
 func (a *Application) Bool() (target *bool) {
 	target = new(bool)
