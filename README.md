@@ -9,7 +9,7 @@ eg: go mod
 
 add to go.mod
 ```
-replace gopkg.in/alecthomas/kingpin.v2 v2.2.6 => github.com/zhanglp92/kingpin master
+replace gopkg.in/alecthomas/kingpin.v2 v2.2.6 => github.com/zhanglp92/kingpin v1.0.0
 ```
 
 continue 
