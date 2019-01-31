@@ -12,7 +12,7 @@
 
 在自己项目的 go.mod 文件中添加如下语句（用来替换原生的kingpin）
 ```
-replace gopkg.in/alecthomas/kingpin.v2 v2.2.6 => github.com/zhanglp92/kingpin master
+replace gopkg.in/alecthomas/kingpin.v2 v2.2.6 => github.com/zhanglp92/kingpin v1.0.0
 ```
 
 执行下边命令，使其生效
