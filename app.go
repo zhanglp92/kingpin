@@ -11,6 +11,19 @@ type Application struct {
 	values     []string
 }
 
+func (a *Application) getValues() (vals []string) {
+	defer func() {
+		if len(vals) <= 0 {
+			vals = []string{""}
+		}
+	}()
+
+	if vals = flagsVal[a.name]; len(vals) <= 0 {
+		return a.values
+	}
+	return
+}
+
 // Action ...
 func (a *Application) Action(action Action) *Application {
 	return a
@@ -23,34 +36,26 @@ func (a *Application) Flag(name, help string) *Application {
 
 // Default ...
 func (a *Application) Default(values ...string) *Application {
-	return &Application{values: values}
+	a.values = values
+	return a
 }
 
 func (a *Application) String() (target *string) {
 	target = new(string)
-	if len(a.values) <= 0 {
-		return
-	}
-	*target = a.values[0]
+	a.StringVar(target)
 
 	return
 }
 
 // StringVar ...
 func (a *Application) StringVar(target *string) {
-	if len(a.values) > 0 {
-		*target = a.values[0]
-	}
+	*target = a.getValues()[0]
 }
 
 // Bool ...
 func (a *Application) Bool() (target *bool) {
 	target = new(bool)
-
-	if len(a.values) <= 0 {
-		return
-	}
-	*target, _ = strconv.ParseBool(a.values[0])
+	*target, _ = strconv.ParseBool(a.getValues()[0])
 
 	return
 }
@@ -59,10 +64,7 @@ func (a *Application) Bool() (target *bool) {
 func (a *Application) Int() (target *int) {
 	target = new(int)
 
-	if len(a.values) <= 0 {
-		return
-	}
-	n, _ := strconv.ParseInt(a.values[0], 10, 0)
+	n, _ := strconv.ParseInt(a.getValues()[0], 10, 0)
 	*target = int(n)
 
 	return
@@ -72,10 +74,7 @@ func (a *Application) Int() (target *int) {
 func (a *Application) Duration() (target *time.Duration) {
 	target = new(time.Duration)
 
-	if len(a.values) <= 0 {
-		return
-	}
-	*target, _ = time.ParseDuration(a.values[0])
+	*target, _ = time.ParseDuration(a.getValues()[0])
 
 	return
 }

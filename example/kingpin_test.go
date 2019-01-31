@@ -7,9 +7,15 @@ import (
 )
 
 func TestKingpin(t *testing.T) {
-	a := kingpin.Flag("name-test", "help-test").Default("true").Bool()
-	b := kingpin.Flag("name-test", "help-test").Default("true").String()
-	c := kingpin.Flag("name-test", "help-test").Default("3.46608ms").Duration()
+
+	kingpin.SetVal("n1", "n1", "nn1")
+	kingpin.SetVal("n2", "n2", "nn2")
+
+	a := kingpin.Flag("n1", "help-test").Default("true").Bool()
+	b := kingpin.Flag("n2", "help-test").Default("true").String()
+	c := kingpin.Flag("n3", "help-test").Default("3.46608ms").Duration()
+
+	t.Log("Flags", kingpin.GetFlags())
 
 	t.Log("Bool: ", a, *a)
 	t.Log("String: ", b, *b)
