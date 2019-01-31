@@ -1,6 +1,9 @@
 package kingpin
 
-import "strconv"
+import (
+	"strconv"
+	"time"
+)
 
 // Application ...
 type Application struct {
@@ -48,6 +51,31 @@ func (a *Application) Bool() (target *bool) {
 		return
 	}
 	*target, _ = strconv.ParseBool(a.values[0])
+
+	return
+}
+
+// Int ...
+func (a *Application) Int() (target *int) {
+	target = new(int)
+
+	if len(a.values) <= 0 {
+		return
+	}
+	n, _ := strconv.ParseInt(a.values[0], 10, 0)
+	*target = int(n)
+
+	return
+}
+
+// Duration ...
+func (a *Application) Duration() (target *time.Duration) {
+	target = new(time.Duration)
+
+	if len(a.values) <= 0 {
+		return
+	}
+	*target, _ = time.ParseDuration(a.values[0])
 
 	return
 }
